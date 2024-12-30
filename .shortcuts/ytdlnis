@@ -1,4 +1,9 @@
 #!/bin/bash
 source $HOME/scripts/lib/term-cfns
 
-mkwin "`tmux display-message -p '#S'`" YT "TERM=screen-256color lf -config <(cat $HOME/.config/lf/lfrc; echo set ratios 1) $HOME/storage/shared/Download/YTDLnis/Video/"
+if [[ "`issess 0:YT`" != true ]]; then
+  mkwin 0 YT "TERM=screen-256color lf -config <(cat $HOME/.config/lf/lfrc; echo set ratios 1) $HOME/storage/shared/Download/YTDLnis/Video/"
+else
+  selwin 0 YT
+  selsess 0
+fi
